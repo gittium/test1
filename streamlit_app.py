@@ -1,26 +1,28 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
-import numpy as np
-st.title('🤫🧏 Iris flower')
-# df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/iris.csv')
-# st.write(df)
-st.sidebar.subheader('Enter your age')
-value = st.sidebar.text_input('')
+# อ่านข้อมูลจากไฟล์ CSV
+df = pd.read_csv('Advertising.csv')
 
-if value:
-    st.subheader(f"You're {value} yo")
-    st.warning(value)
-    rdata = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/iris.csv')
-    st.write(rdata)
-    rdata2 = rdata.groupby('Species').mean()
-    st.write(rdata2)
-    
-    st.scatter_chart(rdata2)
-    
-
-
+st.header("🤖💸 Ads Price Predictor 💸🤖")
+# ตั้งค่า Sidebar
+title = st.sidebar.subheader('ใส่จำนวน units TV ที่ต้องการทำนาย ', divider='rainbow')
+x_pre = st.sidebar.text_input('Units: ','')
+button = st.sidebar.button("Predict","primary")
+if button:
+    y = 7.443040536235991 + 0.04466639703815767*float(x_pre)
+    st.write(f"ราคาที่คาดว่าจะได้จากการทำโฆษณาคือ: {y}")
 else:
-    st.subheader('👈 Please enter your age')
-    st.error('i will guess your age!')
-    
+    st.warning("👈👈กรุณาใส่จำนวน units ที่ต้องการทางซ้ายมือ")
+
+
+
+title1 = st.sidebar.subheader('เลือกดูกราฟของข้อมูลตามต้องการ', divider='rainbow')
+x_column = st.sidebar.selectbox('เลือกคอลัมน์ X', df.columns)
+y_column = st.sidebar.selectbox('เลือกคอลัมน์ Y', df.columns)
+
+# สร้าง Scatter Plot ด้วย Plotly
+fig = px.scatter(df, x=x_column, y=y_column, title=f"Scatter Plot ระหว่าง {x_column} และ {y_column}")
+st.plotly_chart(fig)
+
