@@ -5,6 +5,8 @@ import plotly.express as px
 # อ่านข้อมูลจากไฟล์ CSV
 df = pd.read_csv('Advertising.csv')
 
+st.set_page_config(page_title="Prediction", page_icon="favicon_32x32_XX0_icon.ico")
+
 st.header("🤖💸 Ads Price Predictor 💸🤖")
 # ตั้งค่า Sidebar
 title = st.sidebar.subheader('ใส่จำนวน units TV ที่ต้องการทำนาย ', divider='rainbow')
