@@ -1,6 +1,6 @@
 # Prediction using Linear Regression Model
 
-this app explain about relation between X, y and Predictive Data
+this Web App show data visualization and predictive data
 
 ## Demo App
 
